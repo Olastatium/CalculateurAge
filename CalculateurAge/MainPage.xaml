@@ -12,9 +12,23 @@
             <Label Text="Date de naissance" FontSize="16"/>
             <DatePicker Date="{Binding DateNaissance, Mode=TwoWay}"/>
 
-            <Button Text="Calculer" Command="{Binding CalculerCommand}"/>
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Calculer" Command="{Binding CalculerCommand}" FlexLayout.Basis="0" FlexLayout.Grow="1"/>
+                <Button Text="Effacer" Command="{Binding EffacerCommand}" FlexLayout.Basis="0" FlexLayout.Grow="1"/>
+            </HorizontalStackLayout>
 
             <Label Text="{Binding Resultat}" FontSize="20" IsVisible="{Binding ResultatVisible}"/>
+            <Label Text="{Binding Message, StringFormat='Statut: {0}'}" FontSize="16" IsVisible="{Binding ResultatVisible}"/>
+            <Label Text="{Binding DaysToNextBirthday, StringFormat='Jours avant anniversaire: {0}'}" FontSize="16" IsVisible="{Binding ResultatVisible}"/>
+
+            <Label Text="Historique des calculs" FontSize="16" Margin="0,10,0,0"/>
+            <CollectionView ItemsSource="{Binding HistoriqueCalculs}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}" Padding="5" FontSize="14"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 
